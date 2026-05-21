@@ -16,6 +16,7 @@ if not parser_config.saplang then
 	parser_config.saplang = {
 		install_info = {
 			url = "https://github.com/nobu-x3/saplang_ts",
+			branch = "main",
 			files = { "src/parser.c" },
 			generate_requires_npm = false,
 			requires_generate_from_grammar = false,

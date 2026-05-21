@@ -10,7 +10,7 @@ Provides syntax highlighting, folds, and locals queries for Neovim via
 
 ```lua
 use {
-	"nobu-x3/tree-sitter-saplang",
+	"nobu-x3/saplang_ts",
 	requires = "nvim-treesitter/nvim-treesitter",
 }
 ```

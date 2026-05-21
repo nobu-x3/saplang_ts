@@ -1,0 +1,30 @@
+{
+	"name": "tree-sitter-saplang",
+	"version": "0.1.0",
+	"description": "Tree-sitter grammar for Saplang",
+	"main": "bindings/node",
+	"keywords": [
+		"parser",
+		"tree-sitter",
+		"saplang"
+	],
+	"tree-sitter": [
+		{
+			"scope": "source.saplang",
+			"file-types": [
+				"sl"
+			],
+			"highlights": "queries/saplang/highlights.scm",
+			"injections": "queries/saplang/injections.scm",
+			"locals": "queries/saplang/locals.scm"
+		}
+	],
+	"devDependencies": {
+		"tree-sitter-cli": "^0.22.6"
+	},
+	"scripts": {
+		"build": "tree-sitter generate",
+		"test": "tree-sitter test",
+		"parse": "tree-sitter parse"
+	}
+}

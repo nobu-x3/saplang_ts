@@ -1,0 +1,86 @@
+==================
+hello world
+==================
+
+fn i32 main() {
+	return 0;
+}
+
+---
+
+(source_file
+	(fn_decl
+		return_type: (primitive_type)
+		name: (identifier)
+		body: (block
+			(return_stmt
+				(number_literal)))))
+
+==================
+struct and slice
+==================
+
+struct Foo {
+	i32 a;
+	u8[] s;
+}
+
+export fn void take(Foo* p, u8[] m) {
+	p.a = 1;
+}
+
+---
+
+(source_file
+	(struct_decl
+		name: (identifier)
+		(field_decl type: (primitive_type) name: (identifier))
+		(field_decl type: (slice_type (primitive_type)) name: (identifier)))
+	(fn_decl
+		return_type: (primitive_type)
+		name: (identifier)
+		(parameter_list
+			(parameter
+				type: (pointer_type (named_type (identifier)))
+				name: (identifier))
+			(parameter
+				type: (slice_type (primitive_type))
+				name: (identifier)))
+		body: (block
+			(assignment_statement
+				(assignment_expression
+					left: (member_expression
+						object: (identifier)
+						field: (identifier))
+					right: (number_literal))))))
+
+==================
+fn pointer parameter
+==================
+
+fn void add(fn* i32(i32, i32) cb) {
+	i32 r = cb(1, 2);
+}
+
+---
+
+(source_file
+	(fn_decl
+		return_type: (primitive_type)
+		name: (identifier)
+		(parameter_list
+			(parameter
+				type: (function_pointer_type
+					return_type: (primitive_type)
+					(primitive_type)
+					(primitive_type))
+				name: (identifier)))
+		body: (block
+			(var_decl_stmt
+				type: (primitive_type)
+				name: (identifier)
+				init: (call_expression
+					callee: (identifier)
+					(argument_list
+						(number_literal)
+						(number_literal)))))))
